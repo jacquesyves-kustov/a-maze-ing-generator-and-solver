@@ -8,14 +8,14 @@ namespace maze_creating_and_solving
 
 	Maze::Maze(const unsigned short& rows, const unsigned short& columns) : matrixRows_(rows), matrixColumns_(columns)
 	{
-		// Выделение памяти
+		// Memory allocation
 		matrix_ = new char* [matrixRows_];
 		for (short row = 0; row < matrixRows_; ++row)
 		{
 			matrix_[row] = new char[matrixColumns_];
 		}
 
-		// Заполнение
+		// Fill matrix with CLOSED_CELL
 		for (short row = 0; row < matrixRows_; ++row)
 		{
 			for (short column = 0; column < matrixColumns_; ++column)
@@ -36,6 +36,7 @@ namespace maze_creating_and_solving
 	}
 
 
+	// It prints matrix/maze in the console
 	void Maze::showMaze() const
 	{
 		using std::cout;
@@ -43,7 +44,6 @@ namespace maze_creating_and_solving
 
 		for (short row = 0; row < matrixRows_; ++row)
 		{
-			//cout << endl;
 			for (short column = 0; column < matrixColumns_; ++column)
 			{
 				cout << std::setw(2) << matrix_[row][column];
@@ -54,6 +54,7 @@ namespace maze_creating_and_solving
 	}
 
 
+	// This friend function is used in creating of Solver objects
 	void copyMaze(const Maze& maze, char** copy)
 	{
 		for (unsigned short row = 0; row < maze.matrixRows_; ++row)
