@@ -12,11 +12,13 @@ namespace maze_creating_and_solving
 
 	Solver_DEF::Solver_DEF(Maze* maze) : Solver(maze)
 	{
+		// Point structure conssists of two members: row(x_) and column(y_) - see its definition in dead-end-filling header
 
 		// temporary storage
 		Point* deadEndsPoints = new Point[((getColumns() - 1) / 2) * ((getRows() - 1) / 2)];
 
 
+		// dead-ends counter
 		deadEndsTotal = 0;
 
 
@@ -66,6 +68,9 @@ namespace maze_creating_and_solving
 					deadEndsPoints[deadEndsTotal].x_ = row;
 					deadEndsPoints[deadEndsTotal].y_ = column;
 					deadEndsTotal++;
+
+					// mark all dead-end cells as visited (all visited cells lead to dead-ends)
+					maze_[row][column] = VISITED_CELL;
 				}
 			}
 		}
@@ -81,7 +86,7 @@ namespace maze_creating_and_solving
 		deadEndsTotal--;
 
 
-		// create array of dead-ends without empty slots
+		// create array of dead-ends without reserved empty memory
 		ptDeadEndsArr = new Point[deadEndsTotal];
 
 		for (unsigned short deadEndIndex = 0; deadEndIndex < deadEndsTotal; ++deadEndIndex) 
@@ -89,7 +94,7 @@ namespace maze_creating_and_solving
 			ptDeadEndsArr[deadEndIndex] = deadEndsPoints[deadEndIndex];
 		}
 
-		// free temporary strorage
+		// free temporary storage
 		delete[] deadEndsPoints;
 	}
 
@@ -137,42 +142,43 @@ namespace maze_creating_and_solving
 	}
 
 
+	// fillDeadEnd() marks cells that lead the dead-end at the Point coordinates
 	void Solver_DEF::fillDeadEnd(Point& point) 
 	{
-		maze_[point.x_][point.y_] = VISITED_CELL;
-
 		while (true) 
 		{
-			// find free cell
+			// FIND FREE CELL AROUND THE POINT IN THE MAZE
 			
-			// check upper cell
+			// try to move to the upper cell
 			if (maze_[point.x_ + 1][point.y_] == FREE_CELL)
 				point.x_++;
 
-			// check right cell
+			// try to move to the right cell
 			else if (maze_[point.x_][point.y_ + 1] == FREE_CELL)
 				point.y_++;
 
-			// check lower cell
+			// try to move to the lower cell
 			else if (maze_[point.x_ - 1][point.y_] == FREE_CELL)
 				point.x_--;
 
-			// check left cell
+			// try to move to the left cell
 			else if (maze_[point.x_][point.y_ - 1] == FREE_CELL)
 				point.y_--;
 			
 
-			// junction and start position
+			// if junction and start position are met, filling will be stopped
 			if ((point.x_ == 1 && point.y_ == 1) || (isJunction(point.x_, point.y_)))         // не развилка и не старт
 				break;
 			
 
+			// mark cell as visited
 			maze_[point.x_][point.y_] = VISITED_CELL;
 		}
 
 	}
 
 
+	// it marks all cells that lead to the dead-ends
 	void Solver_DEF::solveMaze()
 	{
 		for (unsigned short deadEndIndex = 0; deadEndIndex < deadEndsTotal; ++deadEndIndex) 
