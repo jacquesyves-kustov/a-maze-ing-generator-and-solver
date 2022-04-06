@@ -9,11 +9,11 @@ The [dead-end filling method](https://en.wikipedia.org/wiki/Maze-solving_algorit
 
 ## What can I customize?: 
 - size of a final maze
-- length of a passage
+- length of passages in maze
 - branching strategy
 
 ## How to start?
 - Clone this repo
 - Run the code
-- Enter size, length, etc.
+- Enter size, passage length, etc.
 - Have fun :)
