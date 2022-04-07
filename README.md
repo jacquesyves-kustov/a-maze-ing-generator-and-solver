@@ -1,11 +1,10 @@
 # Random Maze Generator and Solver
-![TestImage](https://i.ibb.co/0MZ8Yj2/TestMaze.jpg)
 
 ## Examples
-### Case 1: the maze with long path to the exit
+### Case 1: the maze with wide branching
 ![LessBranches](https://i.ibb.co/Rv3qTcj/Less-Branches.png)
 ![LessBranches_Solved](https://i.ibb.co/TBChCc2/Less-Branches-Solved.png)
-### Case 2: the maze with wide branching and short path to the exit
+### Case 2: the maze with long path to the exit
 ![MoreBranches](https://i.ibb.co/vVbTc0f/More-Branches.png)
 ![MoreBranches_Solved](https://i.ibb.co/bB1ysbK/More-Branches-Solved.png)
 
