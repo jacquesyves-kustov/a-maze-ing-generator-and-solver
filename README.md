@@ -18,9 +18,3 @@
 The [randomized depth-first search](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search).
 ### - Solving:
 The [dead-end filling method](https://en.wikipedia.org/wiki/Maze-solving_algorithm#Dead-end_filling).
-
-## How to start?
-- Clone this repo
-- Run the code
-- Enter size, passage length, etc.
-- Have fun :)
