@@ -2,7 +2,7 @@
 
 ## What can I customize?: 
 - size of a final maze
-- length of passages in maze
+- length of passages
 - branching strategy
 
 ## Examples
